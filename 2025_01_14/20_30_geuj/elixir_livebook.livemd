@@ -1,0 +1,273 @@
+# Elixir livebook
+
+## Integers
+
+```elixir
+
+```
+
+```elixir
+(2 + 4) * 2.458
+```
+
+## Strings
+
+```elixir
+name = "John"
+```
+
+```elixir
+IO.puts "hey #{name}\nHow are you ?
+45 / 7" <> " = #{45 / 7}"
+```
+
+## Atom
+
+```elixir
+:ok
+```
+
+## List
+
+```elixir
+lst = [12, "adam", :ok, 3.1415]
+[1 | lst]
+```
+
+```elixir
+lst = [1,2,3]
+lst -- [1]
+```
+
+```elixir
+lst ++ [4]
+```
+
+## Tuples
+
+```elixir
+{:ok, "done"}
+```
+
+## Map
+
+```elixir
+employee = %{:ok => :ok_done , "name" => "John", "last_name" => "Newman"}
+IO.puts "#{employee.ok} #{employee["name"]} #{employee["last_name"]}"
+```
+
+## Operators
+
+```elixir
+false and true
+```
+
+```elixir
+false or "this"
+```
+
+```elixir
+not false and not false
+```
+
+```elixir
+"result" && 12
+```
+
+```elixir
+false || true
+```
+
+## Comparison operators
+
+```elixir
+IO.puts "#{1.0 === 1} #{1 === 1} #{1 == 1.0} #{1 < 1.0} #{1 <= 1.0}"
+```
+
+```elixir
+IO.puts "#{1 in [1,2,3]} #{1 not in [0,2,3]}"
+```
+
+## Match
+
+```elixir
+x = 2
+1 = x
+```
+
+```elixir
+{:ok, value} = {:ok, "success"}
+value
+```
+
+```elixir
+value = "success"
+{:ok, ^value} = {:ok, "success"}
+```
+
+```elixir
+value = "erroe"
+{:ok, value} = {:ok, "success"}
+```
+
+## _ variables
+
+```elixir
+{a, _, c} = {1, 2, 3}
+IO.puts "#{a} #{c}"
+```
+
+## if else
+
+```elixir
+color = "blue"
+if color == "blue" do
+  :ok
+end
+```
+
+```elixir
+if color == "grey", do: :ok, else: :err
+```
+
+```elixir
+if color == "blue", do: :ok
+```
+
+```elixir
+unless color == "blue" do
+  IO.puts :ok
+  ^color = "grey"
+end
+:done
+```
+
+## Case
+
+```elixir
+res = {:err} # {:ok, "success"}
+
+case res do
+  {:ok, result} -> "this matches [#{result}]"
+  {:err, error} -> "this won't match [#{error}]"
+  {:other, _} -> "other match"
+  _ -> "nothing"
+end
+```
+
+```elixir
+color = "bluea"
+
+cond do
+  color == "blue" -> color
+  color == "grey" -> color
+  color == "black" -> color
+  true -> "catch everything #{color}"
+end
+```
+
+```elixir
+res = {:ok, "success"}
+err = {:err, "error"}
+with {:ok, result} <- res do
+  result
+end
+```
+
+```elixir
+with {:ok, result} <- res, {:err, _error} <- err, do: IO.puts("res: #{result}")
+```
+
+## Anonymous functions
+
+```elixir
+sum = fn a, b -> a + b end
+sum.(1, 2)
+```
+
+```elixir
+sum = &(&1 + &2)
+sum.(1, 2)
+```
+
+```elixir
+say_hello = &("Hello #{&1}")
+say_hello.("John")
+```
+
+```elixir
+handle_res = fn
+  {:ok, result} -> result
+  {:err, error} -> error
+end
+handle_res.({:ok, "success"})
+```
+
+## Modules
+
+```elixir
+defmodule Math do
+  def sum(n1, n2) do
+    n1 + n2
+  end
+  def divide(n1, n2) do
+    n1 / n2
+  end
+  def say_public(n1) do
+    say(n1)
+  end
+  defp say(n1) do
+    IO.puts(n1)
+  end
+end
+IO.puts("#{Math.sum(1, 2)} #{Math.divide(1, 2)} #{Math.say_public("la")}") 
+```
+
+```elixir
+defmodule Greetings do
+  @moduledoc"""
+  module documentation here
+  """
+  @name "John"
+
+  @doc"""
+  Say hello
+  """
+  def hello(), do: "Hello #{@name}"
+  def night(), do: "Good night #{@name}"
+end
+```
+
+## Structs
+
+```elixir
+defmodule User do
+  defstruct [:name, :age]
+end
+```
+
+```elixir
+%User{name: "aze", age: 20}.age
+```
+
+## Function
+
+```elixir
+String.to_integer(Integer.to_string(1))
+```
+
+```elixir
+String.downcase("AZEa AZE È Ê")
+```
+
+```elixir
+String.upcase("éèê aaze")
+```
+
+```elixir
+String.contains?("abc", "d")
+```
+
+```elixir
+String.split( " a_bc_12 " |> String.trim, "_")
+```
