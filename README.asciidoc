@@ -1,0 +1,3 @@
+== Elixir Fundamentals
+
+Course https://www.youtube.com/watch?v=gRQIPvDFuts[here]
